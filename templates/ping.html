@@ -4,16 +4,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
-    <title>DDoSed {{ host }}</title>
+    <title>DDoS'ed {{ host }}</title>
   </head>
   <body>
     <main class="container">
-      <h1>DDoSed {{ host }}</h1>
-      <code>
-        {% for line in result %}
-          {{ line }}
-        {% endfor %}
-      </code>
+      <article>
+        <header>
+          <hgroup>
+            <h1>DDoS'ed {{ host }}</h1>
+            <h2>Almost took them down</h2>
+          </hgroup>
+        </header>
+        <p>Output:</p>
+        <code>
+          {% for line in result %}
+            {{ line }}
+            <br>
+          {% endfor %}
+        </code>
+      </article>
     </main>
   </body>
 </html>

@@ -4,16 +4,14 @@ services:
     build:
       dockerfile: docker/server.dockerfile
     container_name: server
-    ports:
-      - 8090:8090
+    network_mode: host
     restart: unless-stopped
 
   client:
     build:
       dockerfile: docker/client.dockerfile
     container_name: client
-    ports:
-      - 80:8000
+    network_mode: host
     restart: unless-stopped
     depends_on:
       - server
