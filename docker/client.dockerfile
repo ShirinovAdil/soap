@@ -4,5 +4,5 @@ COPY requirements/client.txt ./
 RUN pip install --no-cache-dir -r client.txt
 COPY templates ./templates
 COPY app.py .
-EXPOSE 8000
-ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
+EXPOSE 80
+ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0:80", "app:app"]

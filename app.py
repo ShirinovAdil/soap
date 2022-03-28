@@ -2,7 +2,7 @@ from flask import Flask, request, render_template
 from suds.client import Client
 
 app = Flask(__name__)
-client = Client('http://server:8090/?wsdl', cache=None)
+client = Client('http://localhost:8090/?wsdl', cache=None)
 
 
 @app.route('/', methods=['GET', 'POST'])
