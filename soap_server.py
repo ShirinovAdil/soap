@@ -14,7 +14,17 @@ class PingService(ServiceBase):
             return e.output.decode('utf-8')
 
 
-application = Application([PingService], 'spyne.examples.hello.soap',
+class DNSService(ServiceBase):
+    @rpc(String, _returns=String)
+    def dns(self, host):
+        try:
+            result = subprocess.check_output(['host', host], stderr=subprocess.STDOUT).decode('utf-8')
+            return result
+        except subprocess.CalledProcessError as e:
+            return e.output.decode('utf-8')
+
+
+application = Application([PingService, DNSService], 'spyne.examples.hello.soap',
                           in_protocol=Soap11(validator='lxml'),
                           out_protocol=Soap11())
 
