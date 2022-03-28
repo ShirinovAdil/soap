@@ -1,8 +1,19 @@
 <!doctype html>
-<title>Who to DDoS?</title>
-<h1>Who to DDoS?</h1>
- <form action="/" method="POST">
-  <input type="text" id="host" name="host">
-  <br>
-  <input type="submit" value="Submit">
-</form>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <title>Who to DDoS?</title>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Who to DDoS?</h1>
+        <form action="/" method="POST">
+          <label for="host">Target:</label>
+          <input type="text" id="host" name="host" placeholder="google.com">
+          <input type="submit" value="Fire">
+       </form>
+    </main>
+  </body>
+</html>
