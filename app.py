@@ -14,13 +14,13 @@ def ping():
         return render_template('ping.html', host=host, result=client.service.ping(host).split('\n'))
 
 
-@app.route('/dns', methods=['GET', 'POST'])
-def dns():
+@app.route('/showip', methods=['GET', 'POST'])
+def showip():
     if request.method == 'GET':
-        return render_template('dns_form.html')
+        return render_template('showip_form.html')
     elif request.method == 'POST':
         host = request.form['host']
-        return render_template('dns.html', host=host, result=client.service.dns(host).split('\n'))
+        return render_template('showip.html', host=host, result=client.service.dns(host).split('\n'))
     
 
 

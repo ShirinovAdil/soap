@@ -4,16 +4,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
-    <title>DNS{{ host }}</title>
+    <title>IP of {{ host }}</title>
   </head>
   <body>
     <main class="container">
-      <h1>DNS for {{ host }}</h1>
-      <code>
-        {% for line in result %}
-          {{ line }}
-        {% endfor %}
-      </code>
+      <article>
+        <header>
+          <h1>IP of {{ host }}</h1>
+        </header>
+        <code>
+          {% for line in result %}
+            {{ line }}
+            <br>
+          {% endfor %}
+        </code>
+      </article>
     </main>
   </body>
 </html>

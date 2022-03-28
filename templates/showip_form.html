@@ -4,16 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
-    <title>Who to DDoS?</title>
+    <title>Who to find?</title>
   </head>
   <body>
     <main class="container">
-      <h1>Who's DNS to find?</h1>
-        <form action="/dns" method="POST">
+      <article>
+        <header>
+          <hgroup>
+            <h1>Who to find?</h1>
+            <h2>Find IP address behind a hostname</h2>
+          </hgroup>
+        </header>
+        <form action="/showip" method="POST">
           <label for="host">Target:</label>
           <input type="text" id="host" name="host" placeholder="google.com">
           <input type="submit" value="Find">
-       </form>
+        </form>
+      </article>
     </main>
   </body>
 </html>
