@@ -3,14 +3,15 @@ from spyne.protocol.soap import Soap11
 from spyne.server.wsgi import WsgiApplication
 import socket
 import subprocess
+from dns import resolver
+import dns.resolver
 
 
 class PingService(ServiceBase):
     @rpc(String, _returns=String)
     def ping(self, host):
         try:
-            result = subprocess.check_output(['ping', '-c', '2', host], stderr=subprocess.STDOUT).decode('utf-8')
-            return result
+            return subprocess.check_output(['ping', '-c', '2', host], stderr=subprocess.STDOUT).decode('utf-8')
         except subprocess.CalledProcessError as e:
             return e.output.decode('utf-8')
 
@@ -19,12 +20,31 @@ class DNSService(ServiceBase):
     @rpc(String, _returns=String)
     def dns(self, host):
         try:
-            return socket.gethostbyname(host)
+            NS = dns.resolver.resolve(host, 'NS')
+            auth_NS = dns.resolver.resolve(host, 'SOA')
+            MX = dns.resolver.resolve(host, 'MX')
+            for x in NS:
+                yield f'NS records: {x.to_text()}'
+            for y in auth_NS:
+                yield f'authoritative name server: {y.to_text()}'
+            for z in MX:
+                yield f'MX records: {z.to_text()}'                                
         except socket.gaierror as e:
             return e.strerror
 
 
-application = Application([PingService, DNSService], 'spyne.examples.hello.soap',
+class ShowIPService(ServiceBase):
+    @rpc(String, _returns=String)
+    def showip(self, host):
+        try:
+            return socket.gethostbyname(host)
+        except socket.gaierror as e:
+            return e.strerror
+
+         
+
+
+application = Application([PingService, DNSService, ShowIPService], 'spyne.examples.hello.soap',
                           in_protocol=Soap11(validator='lxml'),
                           out_protocol=Soap11())
 

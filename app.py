@@ -22,6 +22,7 @@ def showip():
         host = request.form['host']
         return render_template('showip.html', host=host, result=client.service.showip(host).split('\n'))
 
+
 @app.route('/dns', methods=['GET', 'POST'])
 def dns():
     if request.method == 'GET':
@@ -31,7 +32,6 @@ def dns():
         return render_template('dns.html', host=host, result=client.service.dns(host).split('\n'))
 
     
-
 
 if __name__ == "__main__":
     app.run(debug=True)
