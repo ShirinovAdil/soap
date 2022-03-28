@@ -20,7 +20,16 @@ def showip():
         return render_template('showip_form.html')
     elif request.method == 'POST':
         host = request.form['host']
-        return render_template('showip.html', host=host, result=client.service.dns(host).split('\n'))
+        return render_template('showip.html', host=host, result=client.service.showip(host).split('\n'))
+
+@app.route('/dns', methods=['GET', 'POST'])
+def dns():
+    if request.method == 'GET':
+        return render_template('dns_form.html')
+    elif request.method == 'POST':
+        host = request.form['host']
+        return render_template('dns.html', host=host, result=client.service.dns(host).split('\n'))
+
     
 
 
