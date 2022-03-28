@@ -1,6 +1,7 @@
 from spyne import Application, rpc, ServiceBase, String
 from spyne.protocol.soap import Soap11
 from spyne.server.wsgi import WsgiApplication
+import socket
 import subprocess
 
 
@@ -18,10 +19,9 @@ class DNSService(ServiceBase):
     @rpc(String, _returns=String)
     def dns(self, host):
         try:
-            result = subprocess.check_output(['host', host], stderr=subprocess.STDOUT).decode('utf-8')
-            return result
-        except subprocess.CalledProcessError as e:
-            return e.output.decode('utf-8')
+            return socket.gethostbyname(host)
+        except socket.gaierror as e:
+            return e.strerror
 
 
 application = Application([PingService, DNSService], 'spyne.examples.hello.soap',
