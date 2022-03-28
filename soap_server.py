@@ -7,7 +7,11 @@ import subprocess
 class PingService(ServiceBase):
     @rpc(String, _returns=String)
     def ping(self, host):
-        return subprocess.check_output(['ping', '-c', '2', host]).decode('utf-8')
+        try:
+            result = subprocess.check_output(['ping', '-c', '2', host], stderr=subprocess.STDOUT).decode('utf-8')
+            return result
+        except subprocess.CalledProcessError as e:
+            return e.output.decode('utf-8')
 
 
 application = Application([PingService], 'spyne.examples.hello.soap',
