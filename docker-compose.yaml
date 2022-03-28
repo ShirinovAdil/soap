@@ -1,0 +1,19 @@
+version: '3'
+services:
+  server:
+    build:
+      dockerfile: docker/server.dockerfile
+    container_name: server
+    ports:
+      - 8090:8090
+    restart: unless-stopped
+
+  client:
+    build:
+      dockerfile: docker/client.dockerfile
+    container_name: client
+    ports:
+      - 80:8000
+    restart: unless-stopped
+    depends_on:
+      - server
