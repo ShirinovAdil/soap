@@ -8,6 +8,15 @@
   </head>
   <body>
     <main class="container">
+      <header>
+        <nav>
+          <ul>
+            <li><a role="button" class="outline" href="/">DDoS</a></li>
+            <li><a role="button" class="outline" href="/showip">Find IP</a></li>
+            <li><a role="button" class="outline" href="/dns">DNS</a></li>
+          </ul>
+        </nav>
+      </header>
       <article>
         <header>
           <hgroup>
@@ -16,7 +25,6 @@
           </hgroup>
         </header>
         <form action="/showip" method="POST">
-          <label for="host">Target:</label>
           <input type="text" id="host" name="host" placeholder="en.kremlin.ru">
           <input type="submit" value="Find">
         </form>

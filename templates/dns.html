@@ -8,14 +8,22 @@
   </head>
   <body>
     <main class="container">
+      <header>
+        <nav>
+          <ul>
+            <li><a role="button" class="outline" href="/">DDoS</a></li>
+            <li><a role="button" class="outline" href="/showip">Find IP</a></li>
+            <li><a role="button" class="outline" href="/dns">DNS</a></li>
+          </ul>
+        </nav>
+      </header>
       <article>
         <header>
           <hgroup>
             <h1>Snooped on {{ host }}</h1>
-            <h2>Here's what we learned:</h2>
+            <h2>What I learned</h2>
           </hgroup>
         </header>
-        <p>Output:</p>
         <code>
           {% for line in result %}
             {{ line }}
