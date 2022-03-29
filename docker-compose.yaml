@@ -2,6 +2,7 @@ version: '3'
 services:
   server:
     build:
+      context: .
       dockerfile: docker/server.dockerfile
     container_name: server
     network_mode: host
@@ -9,6 +10,7 @@ services:
 
   client:
     build:
+      context: .
       dockerfile: docker/client.dockerfile
     container_name: client
     network_mode: host
